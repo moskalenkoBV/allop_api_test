@@ -30,11 +30,14 @@ mongoose.connect(
 
 app.get('/api/stations', stationController.getStations);
 app.get('/api/station/:id', stationController.getStation);
+app.get('/api/station/:id/zones', stationController.getStationZones);
+app.get('/api/station/:id/zones-extra-cost', stationController.getStationZonesExtraCost);
+app.get('/api/station/:id/medias', stationController.getStationMedias);
+app.get('/api/station/:id/services', stationController.getStationServices);
+app.get('/api/station/:id/schedules', stationController.getStationSchedules);
 
 app.get('/*', (req, res) => {
-  res.render('homepage', {
-    title: 'Alena Privet',
-  });
+  res.status(404).json({ code: 404, message: 'Page not found' });
 });
 
 app.listen(4000, () => {

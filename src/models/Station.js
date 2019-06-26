@@ -54,8 +54,45 @@ const schema = new mongoose.Schema({
   label_subscription: Boolean,
   phone_two_displayed: Boolean,
   franchise_tool: Boolean,
+  zones: [
+    {
+      department_code: String,
+      department_name: String,
+      $type: String,
+      areas: [
+        {
+          slug: String,
+          cities: [
+            {
+              zip_code: String,
+              name: String
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  zonesExtraCost: [
+    {
+      department_code: String,
+      department_name: String,
+      cost: String,
+      areas: [
+        {
+          slug: String,
+          cities: [
+            {
+              zip_code: String,
+              name: String
+            }
+          ],
+          cost: String
+        }
+      ]
+    }
+  ]
 }, { timestamps: true });
 
-schema.index({ location: "2dsphere" });
+schema.index({ location: '2dsphere' });
 
 module.exports = mongoose.model('stations', schema);

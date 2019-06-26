@@ -49,7 +49,7 @@ exports.getStations = (req, res) => {
           $near: {
             $maxDistance: (+req.query.max_distance || DISTANCE) * 1000,
             $geometry: {
-              type: "Point",
+              type: 'Point',
               coordinates: [+req.query.fixed_longitude, +req.query.fixed_latitude],
             },
           },
@@ -97,12 +97,72 @@ exports.getStations = (req, res) => {
 };
 
 exports.getStation = (req, res) => {
-  StationModel.findOne({ _id: req.params.id }, '-zones', (error, item) => {
+  StationModel.findOne({ _id: req.params.id }, '-zones -zonesExtraCost -medias -services -schedules', (error, item) => {
     if (error) {
       res.status(400).json({ ...error, code: 400, message: 'getStation: Cant findOne Station' })
     }
     else if (item == null) {
       res.status(404).json({ ...error, code: 404, message: 'Station not found' })
+    } else {
+      res.status(200).json(item);
+    }
+  });
+};
+
+exports.getStationZones = (req, res) => {
+  StationModel.findOne({ _id: req.params.id }, 'zones', (error, item) => {
+    if (error) {
+      res.status(400).json({ ...error, code: 400, message: 'getStationZones: Cant findOne Station zones' });
+    } else if (item == null) {
+      res.status(404).json({ ...error, code: 404, message: 'Station not found' });
+    } else {
+      res.status(200).json(item);
+    }
+  });
+};
+
+exports.getStationZonesExtraCost = (req, res) => {
+  StationModel.findOne({ _id: req.params.id }, 'zonesExtraCost', (error, item) => {
+    if (error) {
+      res.status(400).json({ ...error, code: 400, message: 'getStationZones: Cant findOne Station zones extra cost' });
+    } else if (item == null) {
+      res.status(404).json({ ...error, code: 404, message: 'Station not found' });
+    } else {
+      res.status(200).json(item);
+    }
+  });
+};
+
+exports.getStationMedias = (req, res) => {
+  StationModel.findOne({ _id: req.params.id }, 'medias', (error, item) => {
+    if (error) {
+      res.status(400).json({ ...error, code: 400, message: 'getStationMedias: Cant findOne Station medias' });
+    } else if (item == null) {
+      res.status(404).json({ ...error, code: 404, message: 'Station not found' });
+    } else {
+      res.status(200).json(item);
+    }
+  });
+};
+
+exports.getStationServices = (req, res) => {
+  StationModel.findOne({ _id: req.params.id }, 'services', (error, item) => {
+    if (error) {
+      res.status(400).json({ ...error, code: 400, message: 'getStationServices: Cant findOne Station services' });
+    } else if (item == null) {
+      res.status(404).json({ ...error, code: 404, message: 'Station not found' });
+    } else {
+      res.status(200).json(item);
+    }
+  });
+};
+
+exports.getStationSchedules = (req, res) => {
+  StationModel.findOne({ _id: req.params.id }, 'schedules', (error, item) => {
+    if (error) {
+      res.status(400).json({ ...error, code: 400, message: 'getStationSchedules: Cant findOne Station schedules' });
+    } else if (item == null) {
+      res.status(404).json({ ...error, code: 404, message: 'Station not found' });
     } else {
       res.status(200).json(item);
     }
