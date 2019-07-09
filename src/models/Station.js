@@ -90,6 +90,40 @@ const schema = new mongoose.Schema({
         }
       ]
     }
+  ],
+  medias: [
+    {
+      $type: String,
+      name: String,
+      order: Number,
+      filename: String,
+      tooltip: String,
+      public_url: String,
+      code_html: String
+    }
+  ],
+  schedules: [
+    {
+      day: Number,
+      $type: String,
+      start_time1: String,
+      end_time1: String,
+      start_time2: String,
+      end_time2: String
+    }
+  ],
+  services: [
+    {
+      type_name: String,
+      category_name: String,
+      activity_name: String,
+      service_name: String,
+      front_activity_id: Number,
+      price: Number,
+      on_demand: Boolean,
+      min_wheel_size: Number,
+      max_wheel_size: Number
+    }
   ]
 }, { timestamps: true });
 

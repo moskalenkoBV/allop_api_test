@@ -116,7 +116,7 @@ exports.getStationZones = (req, res) => {
     } else if (item == null) {
       res.status(404).json({ ...error, code: 404, message: 'Station not found' });
     } else {
-      res.status(200).json(item);
+      res.status(200).json(item.zones);
     }
   });
 };
@@ -128,7 +128,7 @@ exports.getStationZonesExtraCost = (req, res) => {
     } else if (item == null) {
       res.status(404).json({ ...error, code: 404, message: 'Station not found' });
     } else {
-      res.status(200).json(item);
+      res.status(200).json(item.zonesExtraCost);
     }
   });
 };
@@ -140,7 +140,7 @@ exports.getStationMedias = (req, res) => {
     } else if (item == null) {
       res.status(404).json({ ...error, code: 404, message: 'Station not found' });
     } else {
-      res.status(200).json(item);
+      res.status(200).json(item.medias);
     }
   });
 };
@@ -152,7 +152,7 @@ exports.getStationServices = (req, res) => {
     } else if (item == null) {
       res.status(404).json({ ...error, code: 404, message: 'Station not found' });
     } else {
-      res.status(200).json(item);
+      res.status(200).json(item.services);
     }
   });
 };
@@ -164,7 +164,7 @@ exports.getStationSchedules = (req, res) => {
     } else if (item == null) {
       res.status(404).json({ ...error, code: 404, message: 'Station not found' });
     } else {
-      res.status(200).json(item);
+      res.status(200).json(item.schedules);
     }
   });
 };
