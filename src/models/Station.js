@@ -4,7 +4,7 @@ const schema = new mongoose.Schema({
   name: String,
   description: String,
   location_slug: String,
-  $type: String,
+  type: { type: String },
   status: String,
   quality_labels: [String],
   company_id: Number,
@@ -36,6 +36,8 @@ const schema = new mongoose.Schema({
       type: [Number],
     }
   },
+  latitude: mongoose.Schema.Types.Decimal128,
+  longitude: mongoose.Schema.Types.Decimal128,
   phone1: String,
   phone2: String,
   fax: String,

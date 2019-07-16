@@ -41,6 +41,7 @@ app.get('/api/station/:id/zones-extra-cost', stationController.getStationZonesEx
 app.get('/api/station/:id/medias', stationController.getStationMedias);
 app.get('/api/station/:id/services', stationController.getStationServices);
 app.get('/api/station/:id/schedules', stationController.getStationSchedules);
+app.post('/api/stations', stationController.postStations);
 
 app.get('/*', (req, res) => {
   res.status(404).json({ code: 404, message: 'Page not found' });
